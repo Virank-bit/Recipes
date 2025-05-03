@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Favourite{% endblock title %}
+{% block main %}
+<div class="container">
+    <h1 class="display-5 text-center my-5 fw-bolder"> Explore Your Favourite Recepies</h1>
+    <div class="row">
+        {% if data %}
+        {% for recipe in data %}
+        <div class="col-lg-4 mb-4 d-flex justify-content-center">
+            <div class="card bg-dark text-white" style="width: 20rem;">
+                <a href="/recipedetails/{{recipe.id}}"><img src="{{recipe.image}}" class="card-img-top p-1" style="border-radius: 10px;" alt="..."></a>
+                <div class="card-body d-flex justify-content-between">
+                    <h5 class="card-title">{{recipe.name}}</h5>
+                    <a href="/deletefav/{{recipe.fav_id}}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center">No Favourites has been added!</p>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

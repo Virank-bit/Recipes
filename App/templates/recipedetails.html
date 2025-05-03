@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Recipe Details{% endblock %}
+{% block main %}
+
+    <!-- Recepies Section -->
+        <div class="container">
+            <h1 class="display-5 text-center my-5 fw-bolder">{{data.name}}</h1>
+            <div class="row justify-content-center align-items-top">  
+                    <div class="col-lg-4">
+                        <img src="{{data.image}}" width="100%" style="border-radius: 8px;" alt="">
+                    </div>
+                    <div class="col-lg-4 pl-4 ms-lg-4">
+                            <div>
+                                <h5>Cuisine : {{data.cuisine}}</h5>
+                                <h5>Difficulty  : {{data.difficulty}}</h5>
+                                <h5>Servings  : {{data.servings}}</h5>
+                                <h5>Rating  : {{data.rating}} ({{data.reviewCount}})</h5>
+                                
+                                <h5 class="mt-1">Prep Time & Cook Time :</h5>
+                                <ul class="pas-4  custom-links">
+                                    <li> Prepration Time: {{data.prepTimeMinutes}} Min</li>
+                                    <li> Cooking Time: {{data.cookTimeMinutes}} Min</li>
+                                </ul>
+                                <h5 class="mt-1">Ingredients :</h5>
+                                <ul class="pas-4  custom-links">
+                                    {% for ingredient in ingredients %}
+                                    <li> {{ingredient}}</li>
+                                    {% endfor %}
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6 justify-content-end">
+                  <h5>Instructions : </h5>
+                    <ul class="pas-4  custom-links">
+                      {% for steps in instructions %}
+                      <li> {{steps}}</li>
+                      {% endfor %}
+                    </ul>
+                </div>
+              <div class="col-lg-4"></div>
+            </div>
+        </div>
+    <!-- Recepies Section Ends  -->
+     {% endblock %}

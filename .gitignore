@@ -1,0 +1,37 @@
+# Python-specific
+*.pyc
+*.pyo
+__pycache__/
+
+# Django-specific
+db.sqlite3  # Ignore SQLite database file (if you're using SQLite)
+*.log        # Ignore log files
+*.pot        # Ignore gettext translation files
+*.pyc        # Ignore compiled Python files
+*.pyo        # Ignore Python optimised files
+
+# Django migrations
+*/migrations/*
+
+# Media folder for uploaded files
+/media
+
+# Static folder for collected static files
+/static
+
+# Virtual environment (if you are using virtualenv or venv)
+env/
+
+
+# IDE-specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating system-specific files
+.DS_Store
+Thumbs.db
+
+# pytest cache
+.cache/

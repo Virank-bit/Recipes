@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock title %}
+{% block main %}
+<style>
+        .card {
+            background-color: #1b263b; /* Slightly lighter dark blue */
+            color: #f0f0f0;
+            border: none;
+            width: 60%;
+            margin: 50px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-label {
+            color: #f0f0f0; /* Light gray for text visibility */
+        }
+
+        .form-check-label {
+            color: #f0f0f0; /* Radio button text visibility */
+        }
+
+        .btn-primary {
+            background-color: #1d4ed8; /* Bright blue */
+            border-color: #1d4ed8;
+            color: #f0f0f0; /* White text for visibility */
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb; /* Slightly lighter blue */
+            border-color: #2563eb;
+        }
+
+        a {
+            color: #38bdf8; /* Cyan for links */
+            text-decoration: none;
+        }
+
+        .input-group .form-control {
+            border-right: 0;
+        }
+
+        .input-group .input-group-text {
+            background-color: #1b263b;
+            border-left: 0;
+            cursor: pointer;
+        }
+        
+        #togglePassword i {
+        color: #ffffff; /* Set eye icon color to white */
+        }
+
+
+        @media screen and (max-width:768px) {
+        .card{
+            width: 70%;
+        }
+        }
+
+        @media screen and (max-width:576px) {
+        .card{
+            width: 90%;
+        }
+        }
+</style>
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card p-4">
+    <h3 class="text-center mb-4">Register</h3>
+    <form method="post" action="/registerUser">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="password" name="pass" placeholder="Enter your password" required>
+          <span class="input-group-text" id="togglePassword">
+            <i class="bi bi-eye" id="passwordIcon"></i>
+          </span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Gender</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="other" value="other" required>
+            <label class="form-check-label" for="other">Other</label>
+          </div>
+        </div>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+      <p class="text-center mt-3">
+        Already have an account? <a href="/login">Login</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+ <!-- togglePassword -->
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordField = document.getElementById('password');
+      const passwordIcon = document.getElementById('passwordIcon');
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.classList.replace('bi-eye', 'bi-eye-slash');
+      } else {
+        passwordField.type = 'password';
+        passwordIcon.classList.replace('bi-eye-slash', 'bi-eye');
+      }
+    });
+  </script>
+{% endblock %}
